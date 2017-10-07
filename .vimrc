@@ -1,4 +1,4 @@
-set nocompatible              " be iMproved, required
+:set nocompatible              " be iMproved, required
 
 " autoinstall vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -68,3 +68,6 @@ set autoread
 " Turn on syntax highlighting
 set background=dark
 colorscheme solarized
+
+" Buffer around cursor
+set scrolloff=12

@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/tyler/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -61,7 +61,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-alias vim="mvim -v"
+alias vim="nvim"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -89,27 +89,20 @@ alias vim="mvim -v"
 autoload -U promptinit && promptinit
 prompt pure
 
-# Pyenv
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-eval "$(pyenv virtualenv-init -)"
-
-# Google Cloud SDK
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-
 # Default editor
 export EDITOR="vim"
 
+# Setup pyenv on new shells
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# Real programmers don't use arrow keys
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
+
+# Fix hub alias
+unalias git
+function git() { hub $@; }
+
 # Syntax highlighting.
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Add to PATH
-export PATH=$HOME/.cargo/bin:$PATH
-export PATH=$HOME/code/flutter/bin:$PATH
-
-# Add colors to ls
-export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
-
-# zsh vi mode
-bindkey -v
-bindkey -M viins 'kj' vi-cmd-mode
+source /Users/tyler/.zfunctions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
