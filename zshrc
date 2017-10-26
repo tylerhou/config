@@ -5,7 +5,6 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -106,3 +105,8 @@ function git() { hub $@; }
 
 # Syntax highlighting.
 source /Users/tyler/.zfunctions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Use ripgrep for fzf
+export FZF_DEFAULT_COMMAND='git ls-files || rg --files'
