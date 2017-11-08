@@ -109,4 +109,4 @@ source /Users/tyler/.zfunctions/zsh-syntax-highlighting/zsh-syntax-highlighting.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Use ripgrep for fzf
-export FZF_DEFAULT_COMMAND='git ls-files || rg --files'
+export FZF_DEFAULT_COMMAND='rg --files'

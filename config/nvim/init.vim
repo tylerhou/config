@@ -70,6 +70,10 @@ Plug 'junegunn/fzf.vim'
 
   command! ProjectFiles execute 'Files' s:find_git_root()
 
+Plug 'scrooloose/nerdtree'
+  nnoremap <Leader>d :let NERDTreeQuitOnOpen = 1<bar>NERDTreeToggle<CR>
+  nnoremap <Leader>D :let NERDTreeQuitOnOpen = 0<bar>NERDTreeToggle<CR>
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
