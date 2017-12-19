@@ -59,16 +59,9 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-  nmap <silent> <leader><space> :ProjectFiles<CR>
+  nmap <silent> <leader><space> :Files<CR>
   nmap <silent> <leader>f :Buffers<CR>
   nmap <silent> <leader>? :History<CR>
-
-  " Try to search in git root, then fallback to current directory
-  function! s:find_git_root()
-    return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
-  endfunction
-
-  command! ProjectFiles execute 'Files' s:find_git_root()
 
 Plug 'scrooloose/nerdtree'
   nnoremap <Leader>d :let NERDTreeQuitOnOpen = 1<bar>NERDTreeToggle<CR>
@@ -121,6 +114,9 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
+
+set winheight=40
+set winwidth=90
 
 " More natural split openings
 set splitbelow

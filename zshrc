@@ -109,4 +109,23 @@ source /Users/tyler/.zfunctions/zsh-syntax-highlighting/zsh-syntax-highlighting.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Use ripgrep for fzf
-export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_COMMAND='files'
+
+cdfd () {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+cdgr () {
+  local dir
+  dir=$(git rev-parse --show-toplevel 2> /dev/null)
+  if [ -z $dir ]; then
+    cd .
+  else
+    cd $dir
+  fi
+}
+
+export GPG_TTY=$(tty)
