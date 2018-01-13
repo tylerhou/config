@@ -14,6 +14,29 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 
+Plug 'autozimu/LanguageClient-neovim', {
+  \ 'do': ':UpdateRemotePlugins',
+  \ 'tag': 'binary-*-x86_64-apple-darwin',
+  \ }
+
+  set hidden
+
+  let g:LanguageClient_serverCommands = {
+      \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+      \ 'reason': ['ocaml-language-server', '--stdio'],
+      \ 'ocaml': ['ocaml-language-server', '--stdio'],
+      \ }
+
+  " Automatically start language servers.
+  let g:LanguageClient_autoStart = 1
+
+  nnoremap <silent> K :call LanguageClient_textDocument_hover()<cr>
+  nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
+  nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
+  nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
+  Plug 'reasonml-editor/vim-reason-plus'
+
 Plug 'tpope/vim-endwise'
 Plug 'docunext/closetag.vim'
 Plug 'tpope/vim-surround'

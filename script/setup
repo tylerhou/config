@@ -1,0 +1,12 @@
+mkdir -p ~/.config
+ln -s ~/dotfiles/config/alacritty ~/.config/alacritty
+ln -s ~/dotfiles/config/iterm2 ~/.config/iterm2
+ln -s ~/dotfiles/config/nvim ~/.config/nvim
+ln -s ~/dotfiles/config/tmux ~/.config/tmux
+
+ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/zfunctions ~/.zfunctions
+ln -s ~/dotfiles/zprofile ~/.zprofile
+ln -s ~/dotfiles/zshrc ~/.zshrc
+
+ln -s ~/.config/nvim/init.vim ~/.vimrc
