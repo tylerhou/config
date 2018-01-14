@@ -1,0 +1,6 @@
+[submodule "zfunctions/zsh-syntax-highlighting"]
+	path = zfunctions/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "brewfile"]
+	path = brewfile
+	url = git://github.com/tylerhou/homebrew-brewfile.git

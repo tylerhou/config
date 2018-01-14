@@ -100,7 +100,6 @@ bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
 
 # Fix hub alias
-unalias git
 function git() { hub $@; }
 
 # Syntax highlighting.
