@@ -89,7 +89,7 @@ autoload -U promptinit && promptinit
 prompt pure
 
 # Default editor
-export EDITOR="vim"
+export EDITOR="nvim"
 
 # Real programmers don't use arrow keys
 bindkey "^P" up-line-or-search

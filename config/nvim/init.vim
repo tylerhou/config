@@ -50,7 +50,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
   function! s:goyo_enter()
     Limelight
-    set spell noci nosi noai nolist noshowmode noshowcmd
+    set spell noci nosi noai nolist noshowmode noshowcmd linebreak
     let &background = ( &background == "light" ? "dark" : "light" )
     let b:complete = &complete
     set complete+=s
@@ -58,11 +58,16 @@ Plug 'junegunn/goyo.vim'
     let b:quitting_bang = 0
     autocmd QuitPre <buffer> let b:quitting = 1
     cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+
+    noremap j gj
+    noremap k gk
+    noremap 0 g0
+    noremap $ g$
   endfunction
 
   function! s:goyo_leave()
     Limelight!
-    set nospell ci si ai noshowmode showcmd
+    set nospell ci si ai noshowmode showcmd nolinebreak
     let &background = ( &background == "light" ? "dark" : "light" )
     let &complete = b:complete
     " Quit Vim if this is the only remaining buffer
@@ -73,6 +78,11 @@ Plug 'junegunn/goyo.vim'
         qa
       endif
     endif
+
+    unmap j
+    unmap k
+    unmap 0
+    unmap $
   endfunction
 
   autocmd! User GoyoEnter nested call <SID>goyo_enter()
