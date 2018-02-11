@@ -1,12 +1,21 @@
+#!/bin/sh
+
 mkdir -p ~/.config
-ln -s ~/dotfiles/config/alacritty ~/.config/alacritty
-ln -s ~/dotfiles/config/iterm2 ~/.config/iterm2
-ln -s ~/dotfiles/config/nvim ~/.config/nvim
-ln -s ~/dotfiles/config/tmux ~/.config/tmux
 
-ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/zfunctions ~/.zfunctions
-ln -s ~/dotfiles/zprofile ~/.zprofile
-ln -s ~/dotfiles/zshrc ~/.zshrc
+link () {
+  if [ ! -e $2 ]; then
+    ln -s $1 $2
+  fi
+}
 
-ln -s ~/.config/nvim/init.vim ~/.vimrc
+link ~/.dotfiles/config/alacritty ~/.config/alacritty
+link ~/.dotfiles/config/iterm2 ~/.config/iterm2
+link ~/.dotfiles/config/nvim ~/.config/nvim
+link ~/.dotfiles/config/tmux ~/.config/tmux
+
+link ~/.dotfiles/tmux.conf ~/.tmux.conf
+link ~/.dotfiles/zfunctions ~/.zfunctions
+link ~/.dotfiles/zprofile ~/.zprofile
+link ~/.dotfiles/zshrc ~/.zshrc
+
+link ~/.config/nvim/init.vim ~/.nvimrc

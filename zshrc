@@ -91,10 +91,6 @@ prompt pure
 # Default editor
 export EDITOR="vim"
 
-# Setup pyenv on new shells
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 # Real programmers don't use arrow keys
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
