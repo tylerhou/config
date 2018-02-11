@@ -1,5 +1,3 @@
-source /opt/boxen/env.sh
-
 # Rust config
 export PATH="$HOME/.cargo/bin:$PATH"
 

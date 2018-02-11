@@ -89,7 +89,7 @@ autoload -U promptinit && promptinit
 prompt pure
 
 # Default editor
-export EDITOR="vim"
+export EDITOR="nvim"
 
 # Setup pyenv on new shells
 eval "$(pyenv init -)"
@@ -100,7 +100,6 @@ bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
 
 # Fix hub alias
-unalias git
 function git() { hub $@; }
 
 # Syntax highlighting.
