@@ -1,0 +1,14 @@
+#!/bin/sh
+
+dir=${1:-.}
+git check-ignore -q $dir > /dev/null
+gitignore=$?
+gitroot=$(git -C $dir rev-parse --show-toplevel 2> /dev/null)
+gitrepo=$?
+if [ $gitrepo -eq 0 -a $gitignore -eq 0 ]; then
+  rg -u --files $(realpath --relative-to=$dir $gitroot)
+elif [ $gitrepo -eq 0 ]; then
+  rg --files $(realpath --relative-to=$dir $gitroot)
+else
+  rg --files $dir
+fi

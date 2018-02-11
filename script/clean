@@ -1,0 +1,11 @@
+rm ~/.config/alacritty
+rm ~/.config/iterm2
+rm ~/.config/nvim
+rm ~/.config/tmux
+
+rm ~/.tmux.conf
+rm ~/.zfunctions
+rm ~/.zprofile
+rm ~/.zshrc
+
+rm ~/.vimrc

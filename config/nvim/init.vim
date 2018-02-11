@@ -14,6 +14,29 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 
+Plug 'autozimu/LanguageClient-neovim', {
+  \ 'do': ':UpdateRemotePlugins',
+  \ 'tag': 'binary-*-x86_64-apple-darwin',
+  \ }
+
+  set hidden
+
+  let g:LanguageClient_serverCommands = {
+      \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+      \ 'reason': ['ocaml-language-server', '--stdio'],
+      \ 'ocaml': ['ocaml-language-server', '--stdio'],
+      \ }
+
+  " Automatically start language servers.
+  let g:LanguageClient_autoStart = 1
+
+  nnoremap <silent> K :call LanguageClient_textDocument_hover()<cr>
+  nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
+  nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
+  nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
+  Plug 'reasonml-editor/vim-reason-plus'
+
 Plug 'tpope/vim-endwise'
 Plug 'docunext/closetag.vim'
 Plug 'tpope/vim-surround'
@@ -69,16 +92,9 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-  nmap <silent> <leader><space> :ProjectFiles<CR>
+  nmap <silent> <leader><space> :Files<CR>
   nmap <silent> <leader>f :Buffers<CR>
   nmap <silent> <leader>? :History<CR>
-
-  " Try to search in git root, then fallback to current directory
-  function! s:find_git_root()
-    return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
-  endfunction
-
-  command! ProjectFiles execute 'Files' s:find_git_root()
 
 Plug 'scrooloose/nerdtree'
   nnoremap <Leader>d :let NERDTreeQuitOnOpen = 1<bar>NERDTreeToggle<CR>
@@ -131,6 +147,9 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
+
+set winheight=40
+set winwidth=90
 
 " More natural split openings
 set splitbelow
