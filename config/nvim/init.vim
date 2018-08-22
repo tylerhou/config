@@ -13,6 +13,11 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
+Plug 'jparise/vim-graphql'
+
+" Add jsx syntax highlighting to TypeScript
+autocmd BufNewFile,BufRead *.ts  set filetype=typescript.jsx
+autocmd BufNewFile,BufRead *.tsx setfiletype typescript.jsx
 
 Plug 'autozimu/LanguageClient-neovim', {
   \ 'do': ':UpdateRemotePlugins',
@@ -121,6 +126,12 @@ Plug 'mbbill/undotree'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
   set number relativenumber
 
+Plug 'sbdchd/neoformat'
+  augroup fmt
+    autocmd!
+    autocmd BufWritePre * Neoformat
+  augroup END
+
 call plug#end()
 
 set tabstop=4
@@ -149,7 +160,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
 set winheight=40
-set winwidth=90
+set winwidth=82
 
 " More natural split openings
 set splitbelow
