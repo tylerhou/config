@@ -191,6 +191,10 @@ let g:python3_host_prog = '/Users/tyler/.pyenv/versions/neovim3/bin/python'
 set background=dark
 colorscheme NeoSolarized
 
+" Transparent background, for better rendering with Alacritty.
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
+
 " Airline
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
