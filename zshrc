@@ -99,7 +99,7 @@ bindkey "^N" down-line-or-search
 function git() { hub $@; }
 
 # Syntax highlighting.
-source /Users/tyler/.zfunctions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zfunctions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
