@@ -7,5 +7,6 @@ rm ~/.tmux.conf
 rm ~/.zfunctions
 rm ~/.zprofile
 rm ~/.zshrc
+rm ~/.zshenv
 
 rm ~/.nvimrc

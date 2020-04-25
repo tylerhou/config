@@ -17,5 +17,6 @@ link ~/.dotfiles/tmux.conf ~/.tmux.conf
 link ~/.dotfiles/zfunctions ~/.zfunctions
 link ~/.dotfiles/zprofile ~/.zprofile
 link ~/.dotfiles/zshrc ~/.zshrc
+link ~/.dotfiles/zshenv ~/.zshenv
 
 link ~/.config/nvim/init.vim ~/.nvimrc
