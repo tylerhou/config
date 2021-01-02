@@ -9,12 +9,6 @@ export PATH="/usr/local/sbin:$PATH"
 # Stack
 export PATH="$HOME/.local/bin:$PATH"
 
-# Setup pyenv on new shells
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "$(rbenv init -)"
-eval "$(nodenv init -)"
-
 # Define prompt theme directory
 fpath=( "$HOME/.zfunctions" $fpath )
 
