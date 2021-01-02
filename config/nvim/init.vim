@@ -56,7 +56,7 @@ Plug 'junegunn/goyo.vim'
   function! s:goyo_enter()
     Limelight
     set spell noci nosi noai nolist noshowmode noshowcmd linebreak
-    let &background = ( &background == "light" ? "dark" : "light" )
+    " let &background = ( &background == "light" ? "dark" : "light" )
     let b:complete = &complete
     set complete+=s
     let b:quitting = 0
@@ -73,7 +73,7 @@ Plug 'junegunn/goyo.vim'
   function! s:goyo_leave()
     Limelight!
     set nospell ci si ai noshowmode showcmd nolinebreak
-    let &background = ( &background == "light" ? "dark" : "light" )
+    " let &background = ( &background == "light" ? "dark" : "light" )
     let &complete = b:complete
     " Quit Vim if this is the only remaining buffer
     if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
