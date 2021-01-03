@@ -16,33 +16,37 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
 
 " Add jsx syntax highlighting to TypeScript
+Plug 'leafgarland/typescript-vim'
 autocmd BufNewFile,BufRead *.ts  set filetype=typescript.jsx
-autocmd BufNewFile,BufRead *.tsx setfiletype typescript.jsx
+autocmd BufNewFile,BufRead *.tsx set filetype typescript.jsx
 
-Plug 'autozimu/LanguageClient-neovim', {
-  \ 'do': ':UpdateRemotePlugins',
-  \ 'tag': 'binary-*-x86_64-apple-darwin',
-  \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 
-  set hidden
+"   set hidden
 
-  let g:LanguageClient_serverCommands = {
-      \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-      \ 'reason': ['ocaml-language-server', '--stdio'],
-      \ 'ocaml': ['ocaml-language-server', '--stdio'],
-      \ }
+"   let g:LanguageClient_serverCommands = {
+"       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+"       \ 'reason': ['ocaml-language-server', '--stdio'],
+"       \ 'ocaml': ['ocaml-language-server', '--stdio'],
+"       \ 'typescript': ['javascript-typescript-stdio'],
+"       \ 'javascript': ['javascript-typescript-stdio'],
+"       \ }
 
-  " Automatically start language servers.
-  let g:LanguageClient_autoStart = 1
+"   let g:LanguageClient_rootMarkers = {
+"     \ 'javascript': ['jsconfig.json'],
+"     \ 'typescript': ['tsconfig.json'],
+"     \ }
 
-  nnoremap <silent> K :call LanguageClient_textDocument_hover()<cr>
-  nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
-  nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
-  nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+"   " Automatically start language servers.
+"   let g:LanguageClient_autoStart = 1
 
-  Plug 'reasonml-editor/vim-reason-plus'
+"   Plug 'reasonml-editor/vim-reason-plus'
 
-Plug 'tpope/vim-endwise'
+" Disabled because of interactions with coc.vim
+" Plug 'tpope/vim-endwise'
 Plug 'docunext/closetag.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
@@ -129,8 +133,74 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'sbdchd/neoformat'
   augroup fmt
     autocmd!
-    autocmd BufWritePre * Neoformat
+    autocmd BufWritePre * | Neoformat
   augroup END
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+  " set hidden
+  set nobackup
+  set nowritebackup
+  set cmdheight=2
+  set updatetime=300
+  set shortmess+=c
+  set signcolumn=yes
+
+  inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
+
+  inoremap <silent><expr> <c-space> coc#refresh()
+
+  if exists('*complete_info')
+    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+  else
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+  endif
+
+  " Use `[g` and `]g` to navigate diagnostics
+  nmap <silent> [g <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+  " GoTo code navigation.
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+
+  " Use K to show documentation in preview window.
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    else
+      call CocAction('doHover')
+    endif
+  endfunction
+
+  " Highlight the symbol and its references when holding the cursor.
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+
+  " Symbol renaming.
+  nmap <leader>rn <Plug>(coc-rename)
+
+  " Formatting selected code.
+  xmap <silent> gf  <Plug>(coc-format-selected)
+  nmap <silent> gf  <Plug>(coc-format-selected)
+
+  let g:coc_global_extensions = [
+    \ 'coc-tsserver',
+    \ 'coc-eslint',
+    \ 'coc-prettier',
+    \ ]
 
 call plug#end()
 
@@ -159,7 +229,8 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
-set winheight=40
+" Breaks coc definition window.
+" set winheight=40
 set winwidth=82
 
 " More natural split openings
@@ -192,8 +263,8 @@ set background=dark
 colorscheme NeoSolarized
 
 " Transparent background, for better rendering with Alacritty.
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE
+" hi! Normal ctermbg=NONE guibg=NONE
+" hi! NonText ctermbg=NONE guibg=NONE
 
 " Airline
 let g:airline_theme='solarized'
@@ -212,8 +283,6 @@ set autochdir
 " Open and close NERDTree easily
 nnoremap <Leader>d :let NERDTreeQuitOnOpen = 1<bar>NERDTreeToggle<CR>
 nnoremap <Leader>D :let NERDTreeQuitOnOpen = 0<bar>NERDTreeToggle<CR>
-
-let g:jsx_ext_required = 0
 
 " " Ctrl-P settings
 " let g:ctrlp_max_files=0

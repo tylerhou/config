@@ -3,11 +3,13 @@ export PATH="$HOME/.fastlane/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# Brew
-export PATH="/usr/local/sbin:$PATH"
+source ~/.secrets
 
-# Stack
-export PATH="$HOME/.local/bin:$PATH"
+# Setup pyenv on new shells
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+# eval "$(rbenv init -)"
+# eval "$(nodenv init -)"
 
 # Define prompt theme directory
 fpath=( "$HOME/.zfunctions" $fpath )

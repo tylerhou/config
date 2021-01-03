@@ -18,5 +18,6 @@ link ~/.dotfiles/zfunctions ~/.zfunctions
 link ~/.dotfiles/zprofile ~/.zprofile
 link ~/.dotfiles/zshrc ~/.zshrc
 link ~/.dotfiles/zshenv ~/.zshenv
+link ~/.dotfiles/secrets ~/.secrets
 
 link ~/.config/nvim/init.vim ~/.nvimrc

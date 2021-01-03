@@ -8,5 +8,6 @@ rm ~/.zfunctions
 rm ~/.zprofile
 rm ~/.zshrc
 rm ~/.zshenv
+rm ~/.secrets
 
 rm ~/.nvimrc
